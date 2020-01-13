@@ -19,11 +19,12 @@ import java.util.Optional;
 public class OptionalTest {
     @Test
     void testMap() {
-        Optional<String> test = Optional.of("{a:1}");
+        Optional<String> test = Optional.of("{\"a\":\"1\"}");
         Map<String, Object> stringObjectMap = test.map(this::parseJsonToMap).get();
 
         //return a optional<Map>
-        test.map(this::parseJsonToMap);
+        test.map(this::parseJsonToMap).get();
+
         //error
         //test.map(this::parseJsonToMap)
                 //return optional

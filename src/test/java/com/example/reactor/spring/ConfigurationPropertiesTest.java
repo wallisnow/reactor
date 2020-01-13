@@ -3,13 +3,14 @@ package com.example.reactor.spring;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
 
 @SpringBootTest
-@EnableConfigurationProperties(AppProperties.class)
+@ConfigurationPropertiesScan
 public class ConfigurationPropertiesTest {
 
     @Autowired

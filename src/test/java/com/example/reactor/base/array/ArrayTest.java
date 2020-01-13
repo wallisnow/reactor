@@ -3,11 +3,6 @@ package com.example.reactor.base.array;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-import java.util.function.Consumer;
-import java.util.function.IntConsumer;
-import java.util.stream.IntStream;
-
 /**
  * @author efggjjp
  * @title
