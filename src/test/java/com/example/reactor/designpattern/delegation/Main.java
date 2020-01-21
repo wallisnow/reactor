@@ -1,4 +1,4 @@
-package com.example.reactor.designpattern;
+package com.example.reactor.designpattern.delegation;
 
 public class Main {
     public static void main(String[] args) {

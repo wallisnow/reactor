@@ -1,4 +1,4 @@
-package com.example.reactor.designpattern;
+package com.example.reactor.designpattern.delegation;
 
 public class A implements I{
     @Override
