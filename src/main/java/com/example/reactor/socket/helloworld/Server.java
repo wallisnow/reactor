@@ -9,6 +9,8 @@ import java.net.Socket;
 @Slf4j
 public class Server {
     public static void main(String[] args) {
+
+        final String QUIT = "quit";
         final int DEFAULT_PORT = 8888;
         ServerSocket serverSocket = null;
         try {
@@ -27,16 +29,24 @@ public class Server {
                 //写数据给客户端
                 BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
 
-                //读取客户端发送的消息
-                String msg = bufferedReader.readLine();
+                String msg = null;
 
+                //读取客户端发送的消息
                 //避免输入流正常或异常关闭
-                if (msg != null) {
+                //这个while 会一直等待msg
+                while ((msg = bufferedReader.readLine()) != null) {
+
                     log.info("读取到 客户端 port: {}, 消息内容: {}", socket.getPort(), msg);
                     //回复客户端收到消息
                     bufferedWriter.write("服务器收到消息: [" + msg + "] ");
                     //保证缓冲区发送所有消息
                     bufferedWriter.flush();
+
+                    //如果客户端发送 quit 那么跳出
+                    if (QUIT.equals(msg)){
+                        log.info("客户端 port: {} 退出", socket.getPort());
+                        break;
+                    }
                 }
 
             }

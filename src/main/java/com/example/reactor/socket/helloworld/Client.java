@@ -9,6 +9,7 @@ import java.net.Socket;
 public class Client {
     public static void main(String[] args) {
 
+        final String QUIT = "quit";
         final String DEFAULT_SERVER_HOST = "127.0.0.1";
         final int DEFAULT_SERVER_PORT = 8888;
 
@@ -27,18 +28,24 @@ public class Client {
 
             //等待用户输入信息
             BufferedReader consoleReader = new BufferedReader(new InputStreamReader(System.in));
-            String input = consoleReader.readLine();
+            while (true) {
+                String input = consoleReader.readLine();
+                //发送消息给服务器
+                bufferedWriter.write(input + "\n");
+                bufferedWriter.flush();
 
-            //发送消息给服务器
-            bufferedWriter.write(input + "\n");
-            bufferedWriter.flush();
+                //读取服务器返回的消息
+                String msg = bufferedReader.readLine();
+                log.info("读取服务器消息: {}", msg);
+                //用户退出
+                if (QUIT.equals(input)){
+                    break;
+                }
+            }
 
-            //读取服务器返回的消息
-            String msg = bufferedReader.readLine();
-            log.info("读取服务器消息: {}", msg);
         } catch (IOException e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             try {
                 //直接关闭外层的writer, 内部会自动执行flush, 也就是自己会关闭对应的socket
                 assert bufferedWriter != null;

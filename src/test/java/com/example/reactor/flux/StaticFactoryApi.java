@@ -1,5 +1,6 @@
 package com.example.reactor.flux;
 
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.reactivestreams.Publisher;
@@ -7,11 +8,15 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.nio.charset.Charset;
+import java.sql.Time;
+import java.time.Duration;
 import java.util.SortedMap;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.Consumer;
 import java.util.function.Supplier;
 
+@Slf4j
 public class StaticFactoryApi {
 
     @Test
@@ -135,5 +140,13 @@ public class StaticFactoryApi {
         Thread.sleep(7_000);
         //time == t17
         clock.subscribe(System.out::println);
+    }
+
+    @Test
+    void testInterval() throws InterruptedException {
+        Flux.interval(Duration.ofSeconds(1))
+                .take(3)
+                .subscribe(aLong -> log.info(String.valueOf(aLong)));
+        TimeUnit.SECONDS.sleep(5);
     }
 }
