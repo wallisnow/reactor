@@ -4,9 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import reactor.core.publisher.Flux;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -33,5 +31,14 @@ public class HelloWorld {
 
         System.out.println("////");
         setStream1.forEach(System.out::println);
+    }
+
+    @Test
+    void name() {
+        Map m = new HashMap<>();
+
+        m.put(1, 2);
+
+        m.entrySet().forEach(System.out::println);
     }
 }

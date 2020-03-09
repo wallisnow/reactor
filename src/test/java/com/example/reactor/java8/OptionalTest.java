@@ -3,10 +3,10 @@ package com.example.reactor.java8;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectReader;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.Collection;
 import java.util.Map;
 import java.util.Optional;
 
@@ -16,6 +16,7 @@ import java.util.Optional;
  * @description
  * @createDate 12/30/19
  */
+@Slf4j
 public class OptionalTest {
     @Test
     void testMap() {
@@ -48,4 +49,11 @@ public class OptionalTest {
         //PASS
         Assertions.assertEquals(empty,o);
     }
+
+    @Test
+    void name() {
+        String aaas = OptionalClazz.pluralize("aaas");
+    }
+
+
 }
