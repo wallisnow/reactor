@@ -15,4 +15,11 @@ public class StringTest {
         String[] split2 = s2.split("\\.", -1);
         Assertions.assertEquals("aaa", split2[0]);
     }
+
+    @Test
+    void getLastSpliting() {
+        String s = "aaa\\bbb\\ccc\\";
+        String[] split = s.split("\\\\");
+        System.out.println(split[2]);
+    }
 }
